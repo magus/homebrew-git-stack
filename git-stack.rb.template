@@ -1,19 +1,19 @@
 class GitStack < Formula
   desc "stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
-  version "__VERSION__"
+  version "{{ version }}"
 
   if OS.mac?
-    url "https://github.com/magus/git-stack-cli/releases/download/__VERSION__/__MAC_BIN__"
-    sha256 "__MAC_SHA256__"
+    url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ mac_bin }}"
+    sha256 "{{ mac_sha256 }}"
   elsif OS.linux?
-    url "https://github.com/magus/git-stack-cli/releases/download/__VERSION__/__LINUX_BIN__"
-    sha256 "__LINUX_SHA256__"
+    url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ linux_bin }}"
+    sha256 "{{ linux_sha256 }}"
   end
 
   def install
-    bin.install "__MAC_BIN__" => "git-stack" if OS.mac?
-    bin.install "__LINUX_BIN__" => "git-stack" if OS.linux?
+    bin.install "{{ mac_bin }}" => "git-stack" if OS.mac?
+    bin.install "{{ linux_bin }}" => "git-stack" if OS.linux?
   end
 
   test do
