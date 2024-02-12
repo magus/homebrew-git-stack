@@ -1,5 +1,5 @@
 class GitStack < Formula
-  desc "stacked diffs for git"
+  desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
   version "{{ version }}"
 
@@ -17,6 +17,7 @@ class GitStack < Formula
   end
 
   test do
-    system "#{bin}/git-stack", "--version"
+    assert_match version, shell_output("#{bin}/git-stack --version")
+    assert_match "Must be run from within a git repository.", shell_output("#{bin}/git-stack 2>&1", 9)
   end
 end
