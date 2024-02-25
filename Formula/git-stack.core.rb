@@ -1,13 +1,13 @@
 require "language/node"
 
 class GitStackCore < Formula
-  version = "1.2.4"
+  version = "1.2.5"
 
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
   url "https://registry.npmjs.org/git-stack-cli/-/git-stack-cli-#{version}.tgz"
   mirror "https://github.com/magus/git-stack-cli/releases/download/#{version}/git-stack-cli-#{version}.tgz"
-  sha256 "2c1b215e7daa96f3a8220c88deac3c9dda3bc5270cf8bd67ac7d15779c850587"
+  sha256 "981c67e959a87b6f2736786554b046d574503b53281b1410f39ab11db5016688"
   license "MIT"
 
   livecheck do
@@ -15,6 +15,14 @@ class GitStackCore < Formula
   end
 
   depends_on "node@18"
+
+  # official Github CLI
+  # https://cli.github.com/
+  depends_on "gh"
+
+  # git revise for faster, in-memory rebasing
+  # https://github.com/mystor/git-revise
+  depends_on "git-revise"
 
   def install
     system "npm", "install", "--production=false", *Language::Node.local_npm_install_args
