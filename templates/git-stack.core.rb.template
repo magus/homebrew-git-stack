@@ -7,7 +7,7 @@ class GitStackCore < Formula
   homepage "https://github.com/magus/git-stack-cli"
   url "https://registry.npmjs.org/git-stack-cli/-/git-stack-cli-#{version}.tgz"
   mirror "https://github.com/magus/git-stack-cli/releases/download/#{version}/git-stack-cli-#{version}.tgz"
-  sha256 ""{{ tarball_sha256 }}""
+  sha256 "{{ tarball_sha256 }}"
   license "MIT"
 
   livecheck do
