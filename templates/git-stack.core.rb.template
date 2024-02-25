@@ -16,6 +16,14 @@ class GitStackCore < Formula
 
   depends_on "node@18"
 
+  # official Github CLI
+  # https://cli.github.com/
+  depends_on "gh"
+
+  # git revise for faster, in-memory rebasing
+  # https://github.com/mystor/git-revise
+  depends_on "git-revise"
+
   def install
     system "npm", "install", "--production=false", *Language::Node.local_npm_install_args
 

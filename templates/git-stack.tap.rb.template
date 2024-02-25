@@ -11,6 +11,14 @@ class GitStack < Formula
     sha256 "{{ linux_sha256 }}"
   end
 
+  # official Github CLI
+  # https://cli.github.com/
+  depends_on "gh"
+
+  # git revise for faster, in-memory rebasing
+  # https://github.com/mystor/git-revise
+  depends_on "git-revise"
+
   def install
     bin.install "{{ mac_bin }}" => "git-stack" if OS.mac?
     bin.install "{{ linux_bin }}" => "git-stack" if OS.linux?
