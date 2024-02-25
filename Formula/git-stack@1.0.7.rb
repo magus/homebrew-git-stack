@@ -1,4 +1,4 @@
-class GitStackAt107 < Formula
+class GitStackAT107 < Formula
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
   version "1.0.7"
