@@ -1,14 +1,14 @@
-class GitStack < Formula
+class GitStackAT1114 < Formula
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
-  version "1.11.5"
+  version "1.11.4"
 
   if OS.mac?
-    url "https://github.com/magus/git-stack-cli/releases/download/1.11.5/git-stack-cli-macos"
-    sha256 "2db2441015cd03265047092d1a929d1ea20442fdc180d63adba9d045a7d6207c"
+    url "https://github.com/magus/git-stack-cli/releases/download/1.11.4/git-stack-cli-macos"
+    sha256 "95873ef7d184b996311efced2f65ddca7658d39a02eaa85347e7b18ce5571b6c"
   elsif OS.linux?
-    url "https://github.com/magus/git-stack-cli/releases/download/1.11.5/git-stack-cli-linux"
-    sha256 "bba4d6d6cf4eb427a2b122e840084c4ba22cb26be367e9124ac533f5d5c26273"
+    url "https://github.com/magus/git-stack-cli/releases/download/1.11.4/git-stack-cli-linux"
+    sha256 "2926a48256719e4fd35e6198ff0e7702303c39ebb748c705f46fac42b786db24"
   end
 
   # official Github CLI
