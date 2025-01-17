@@ -1,14 +1,33 @@
 class GitStack < Formula
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
-  version "1.15.1"
+  version "2.0.0-beta"
 
   if OS.mac?
-    url "https://github.com/magus/git-stack-cli/releases/download/1.15.1/git-stack-cli-macos"
-    sha256 "77c11537d8950b768446c83f8e32420926e0b663d3bd4be0ffdaae078943ed4d"
+    if Hardware::CPU.arm? || Hardware::CPU.in_rosetta2?
+      url "https://github.com/magus/git-stack-cli/releases/download/2.0.0-beta/git-stack-bun-darwin-arm64.zip"
+      sha256 "ea239cf7dad13aabf5463650d079122718fa4a153c11904e0bac60335e7ece39"
+
+      def filename
+        "git-stack-bun-darwin-arm64.zip"
+      end
+    else
+      url "https://github.com/magus/git-stack-cli/releases/download/2.0.0-beta/git-stack-bun-darwin-x64.zip"
+      sha256 "d1758662536d0bb4d72f6ec5d4f29b2a4e90329a26ee94984ec9a901f610b2d1"
+
+      def filename
+        "git-stack-bun-darwin-x64.zip"
+      end
+    end
   elsif OS.linux?
-    url "https://github.com/magus/git-stack-cli/releases/download/1.15.1/git-stack-cli-linux"
-    sha256 "763be87bcc2be628ba97a61f6eaf9ea871de91f28c7d8b8010550642f89b0910"
+    url "https://github.com/magus/git-stack-cli/releases/download/2.0.0-beta/git-stack-bun-linux-x64.zip"
+    sha256 "e95fcac9c17c2750d830c6033fc9fa12953bfd7e7b4b25b9d8b71543a5f989b7"
+
+    def filename
+      "git-stack-bun-linux-x64.zip"
+    end
+  else
+    odie "Unsupported platform. Please submit a bug report here: https://github.com/magus/git-stack-cli/issues\n#{OS.report}"
   end
 
   # official Github CLI
@@ -20,8 +39,8 @@ class GitStack < Formula
   depends_on "git-revise"
 
   def install
-    bin.install "git-stack-cli-macos" => "git-stack" if OS.mac?
-    bin.install "git-stack-cli-linux" => "git-stack" if OS.linux?
+    binary_name = filename.sub(/\.zip$/, "")
+    bin.install binary_name => "git-stack"
   end
 
   test do

@@ -1,20 +1,20 @@
 require "language/node"
 
 class GitStackCore < Formula
-  version = "1.15.1"
+  version = "2.0.0-beta"
 
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
   url "https://registry.npmjs.org/git-stack-cli/-/git-stack-cli-#{version}.tgz"
   mirror "https://github.com/magus/git-stack-cli/releases/download/#{version}/git-stack-cli-#{version}.tgz"
-  sha256 "14d937dc18657b29f86e9c1ccad8d72237610c08cc87b1134845a33291202344"
+  sha256 "b51d3eeee1febdb1b7704f84298859fb5a7c7654ad252c0d63d82bd93468ce2b"
   license "MIT"
 
   livecheck do
     url :stable
   end
 
-  depends_on "node@18"
+  depends_on "node@22"
 
   # official Github CLI
   # https://cli.github.com/
@@ -25,17 +25,17 @@ class GitStackCore < Formula
   depends_on "git-revise"
 
   def install
-    system "npm", "install", "--production=false", *Language::Node.local_npm_install_args
+    system "npm", "install", *Language::Node.local_npm_install_args
 
     target = if OS.mac?
-      "node18-macos-x64"
+      "bun-darwin-x64"
     elsif OS.linux?
-      "node18-linux-x64"
+      "bun-linux-x64"
     end
 
-    system "npm", "run", "build:standalone", "--", target
+    system "npm", "run", "compile", "--target=#{target}"
 
-    bin.install "dist/standalone/git-stack-cli" => "git-stack"
+    bin.install "dist/bin/git-stack-#{target}" => "git-stack"
   end
 
   test do
