@@ -4,11 +4,30 @@ class GitStack < Formula
   version "{{ version }}"
 
   if OS.mac?
-    url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ mac_bin }}"
-    sha256 "{{ mac_sha256 }}"
+    if Hardware::CPU.arm? || Hardware::CPU.in_rosetta2?
+      url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ mac_arm64_bin }}"
+      sha256 "{{ mac_arm64_sha256 }}"
+
+      def filename
+        "{{ mac_arm64_bin }}"
+      end
+    else
+      url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ mac_x64_bin }}"
+      sha256 "{{ mac_x64_sha256 }}"
+
+      def filename
+        "{{ mac_x64_bin }}"
+      end
+    end
   elsif OS.linux?
-    url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ linux_bin }}"
-    sha256 "{{ linux_sha256 }}"
+    url "https://github.com/magus/git-stack-cli/releases/download/{{ version }}/{{ linux_x64_bin }}"
+    sha256 "{{ linux_x64_sha256 }}"
+
+    def filename
+      "{{ linux_x64_bin }}"
+    end
+  else
+    odie "Unsupported platform. Please submit a bug report here: https://github.com/magus/git-stack-cli/issues\n#{OS.report}"
   end
 
   # official Github CLI
@@ -20,8 +39,8 @@ class GitStack < Formula
   depends_on "git-revise"
 
   def install
-    bin.install "{{ mac_bin }}" => "git-stack" if OS.mac?
-    bin.install "{{ linux_bin }}" => "git-stack" if OS.linux?
+    binary_name = filename.sub(/\.zip$/, "")
+    bin.install binary_name => "git-stack"
   end
 
   test do

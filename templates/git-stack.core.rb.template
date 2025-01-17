@@ -14,7 +14,7 @@ class GitStackCore < Formula
     url :stable
   end
 
-  depends_on "node@18"
+  depends_on "node@22"
 
   # official Github CLI
   # https://cli.github.com/
@@ -25,17 +25,17 @@ class GitStackCore < Formula
   depends_on "git-revise"
 
   def install
-    system "npm", "install", "--production=false", *Language::Node.local_npm_install_args
+    system "npm", "install", *Language::Node.local_npm_install_args
 
     target = if OS.mac?
-      "node18-macos-x64"
+      "bun-darwin-x64"
     elsif OS.linux?
-      "node18-linux-x64"
+      "bun-linux-x64"
     end
 
-    system "npm", "run", "build:standalone", "--", target
+    system "npm", "run", "compile", "--target=#{target}"
 
-    bin.install "dist/standalone/git-stack-cli" => "git-stack"
+    bin.install "dist/bin/git-stack-#{target}" => "git-stack"
   end
 
   test do
