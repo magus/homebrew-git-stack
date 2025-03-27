@@ -1,13 +1,13 @@
 require "language/node"
 
 class GitStackCore < Formula
-  version = "2.1.5"
+  version = "2.2.0"
 
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
   url "https://registry.npmjs.org/git-stack-cli/-/git-stack-cli-#{version}.tgz"
   mirror "https://github.com/magus/git-stack-cli/releases/download/#{version}/git-stack-cli-#{version}.tgz"
-  sha256 "4339c31835c894e6c0eea7ef40dbc3d0937bbacacc274018106c51b0ac12d4a1"
+  sha256 "21105fe81f5cba190c921fe08a4d0a087d710b330de9d03c7bbabaed89bf58d0"
   license "MIT"
 
   livecheck do
