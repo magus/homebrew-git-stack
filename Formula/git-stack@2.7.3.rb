@@ -1,27 +1,27 @@
-class GitStack < Formula
+class GitStackAT273 < Formula
   desc "Stacked diffs for git"
   homepage "https://github.com/magus/git-stack-cli"
-  version "2.7.4"
+  version "2.7.3"
 
   if OS.mac?
     if Hardware::CPU.arm? || Hardware::CPU.in_rosetta2?
-      url "https://github.com/magus/git-stack-cli/releases/download/2.7.4/git-stack-bun-darwin-arm64.zip"
-      sha256 "8d0e419f2b76eff7585c578a5f5392fb5469fdc17864bdf5cfff4c1934d3a4b1"
+      url "https://github.com/magus/git-stack-cli/releases/download/2.7.3/git-stack-bun-darwin-arm64.zip"
+      sha256 "8ee6008dc987f532b6a4e617e9bc3d622d773b6367fc823095db73b71ce2b05a"
 
       def filename
         "git-stack-bun-darwin-arm64.zip"
       end
     else
-      url "https://github.com/magus/git-stack-cli/releases/download/2.7.4/git-stack-bun-darwin-x64.zip"
-      sha256 "39922a4c9bdb901b67e5840bda5b8297e8a7fb0f376c9a27820011d6f26ae10f"
+      url "https://github.com/magus/git-stack-cli/releases/download/2.7.3/git-stack-bun-darwin-x64.zip"
+      sha256 "e2a8623e47dba1c1596d36a958de57145ab6ea1dceff2e53f4c715ad4a9c11ce"
 
       def filename
         "git-stack-bun-darwin-x64.zip"
       end
     end
   elsif OS.linux?
-    url "https://github.com/magus/git-stack-cli/releases/download/2.7.4/git-stack-bun-linux-x64.zip"
-    sha256 "119ba4d06eeeec7d3e6d2c4b629c293e072065abdc4632f42d97483b9955b4be"
+    url "https://github.com/magus/git-stack-cli/releases/download/2.7.3/git-stack-bun-linux-x64.zip"
+    sha256 "6bbb639684299d4cd5f0403e9e50f14b7de725d67e049774d75b990590ae3cc0"
 
     def filename
       "git-stack-bun-linux-x64.zip"
